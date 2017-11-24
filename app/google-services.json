@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "73701919583",
+    "firebase_url": "https://top-taste-1e13c.firebaseio.com",
+    "project_id": "top-taste-1e13c",
+    "storage_bucket": "top-taste-1e13c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73701919583:android:bd2ae090280bd1cb",
+        "android_client_info": {
+          "package_name": "com.example.saad.toptaseapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73701919583-vbnokb1n7kl6n45rr828enbl7ah9pgfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACX5cTTqW84KL_a7ZrfI4PzhB3j5ysiOs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
