@@ -29,8 +29,12 @@ public class SendSms extends AppCompatActivity {
             public void onClick(View view) {
                 String phoneNo = txt_smsNumber.getText().toString();
                 String message = txt_smsContent.getText().toString();
-                if (phoneNo.length()>0 && message.length()>0)
+                if (phoneNo.length()>0 && message.length()>0) {
                     sendSMS(phoneNo, message);
+                    Toast.makeText(getBaseContext(),
+                            "Message Sent",
+                            Toast.LENGTH_SHORT).show();
+                }
                 else
                     Toast.makeText(getBaseContext(),
                             "Please enter both phone number and message.",
@@ -42,8 +46,7 @@ public class SendSms extends AppCompatActivity {
 
     private void sendSMS(String phoneNumber, String message)
     {
-        PendingIntent pi = PendingIntent.getActivity(this, 0,
-                new Intent(this, SendSms.class), 0);
+
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(phoneNumber, null, message, null, null);
     }

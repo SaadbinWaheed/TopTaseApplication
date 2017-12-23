@@ -3,8 +3,6 @@ package com.example.saad.toptaseapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,7 +80,7 @@ public class Adapter_menuDetailed extends BaseAdapter implements View.OnClickLis
             holder = new ViewHolder();
             holder.text = (TextView) vi.findViewById(R.id.txtName);
             holder.text1=(TextView)vi.findViewById(R.id.txtPrice);
-            holder.image=(ImageView)vi.findViewById(R.id.img);
+            holder.image=(ImageView)vi.findViewById(R.id.txtQuantity);
 
             /************  Set holder with LayoutInflater ************/
             vi.setTag( holder );

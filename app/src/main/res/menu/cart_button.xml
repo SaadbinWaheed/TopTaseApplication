@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:someNamespace="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/mybutton"
-        android:title=""
-        app:showAsAction="always"
-        android:icon="@drawable/cart_icon"
-        />
+        android:id="@+id/menu_hotlist"
+        android:icon="@drawable/app_icon_2"
+        android:title="Items"
+        someNamespace:actionLayout="@layout/badge_layout"
+        someNamespace:showAsAction="always" />
+
 </menu>

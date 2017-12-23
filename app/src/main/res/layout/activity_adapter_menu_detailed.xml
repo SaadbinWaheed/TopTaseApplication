@@ -7,7 +7,7 @@
     tools:context="com.example.saad.toptaseapplication.Adapter_menuDetailed">
 
     <ImageView
-        android:id="@+id/img"
+        android:id="@+id/txtQuantity"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/sample_2"
@@ -22,13 +22,13 @@
         android:textSize="18sp"
         android:layout_marginStart="13dp"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/img" />
+        android:layout_toEndOf="@+id/txtQuantity" />
 
     <TextView
         android:id="@+id/txtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/img"
+        android:layout_alignBottom="@+id/txtQuantity"
         android:layout_alignStart="@+id/txtName"
         android:text="TextView" />
 </RelativeLayout>

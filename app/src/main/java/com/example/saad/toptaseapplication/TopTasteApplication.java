@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class TopTasteApplication extends Application {
 
-    private ArrayList<String> Items;
-    private ArrayList<Integer> Prices;
+    private ArrayList<String> Items = new ArrayList<>();
+    private ArrayList<Integer> Prices=new ArrayList<>();
 
     public ArrayList<String> getItems() {
         return Items;

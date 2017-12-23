@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+
     defaultConfig {
         applicationId "com.example.saad.toptaseapplication"
         minSdkVersion 19
@@ -18,9 +18,14 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
     dexOptions {
         javaMaxHeapSize "4g"
     }
+    sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/java/Adapters'] } }
 }
 
 dependencies {
@@ -28,10 +33,15 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.google.android.gms:play-services-base:11.0.2'
+    compile 'com.google.firebase:firebase-database:11.0.2'
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:gridlayout-v7:26.+'
+    //compile 'com.android.support:gridlayout-v7:26.+'
     testCompile 'junit:junit:4.12'
+    compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.1.+'
+    compile 'com.michaelmuenzer.android:ScrollableNumberPicker:0.2.2'
+    implementation 'com.android.support:design:27.0.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

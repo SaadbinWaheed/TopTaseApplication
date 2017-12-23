@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context="com.example.saad.toptaseapplication.mainMenu">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <GridView
-        android:id="@+id/gridView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@android:color/white"
-        android:columnWidth="1dp"
-        android:gravity="center"
+        android:id="@+id/customgrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="0dp"
         android:horizontalSpacing="0dp"
-        android:numColumns="2"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="0dp" />
+        android:numColumns="2"
+        android:layout_below="@+id/os_texts"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/os_texts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Top Taste Menu"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 </RelativeLayout>
