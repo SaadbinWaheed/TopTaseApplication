@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    tools:context="com.example.saad.toptaseapplication.Login">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:tint="#60000000"
+        app:srcCompat="@drawable/signup_bg" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativeLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/alpha_boundary"
+        android:padding="20dp"
+        tools:context="com.example.saad.toptastecreditapp.Login">
+
+        <EditText
+            android:id="@+id/txt_Username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#30ffffff"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textAlignment="viewStart"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/txt_numberOfPeople"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txt_Username"
+            android:layout_marginTop="10dp"
+            android:background="#30ffffff"
+            android:hint="Number"
+            android:inputType="textVisiblePassword"
+            android:padding="10dp"
+            android:textAlignment="viewStart"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_Login"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignEnd="@+id/txt_numberOfPeople"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txt_numberOfPeople"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/oval_boundary"
+            android:text="Login"
+            android:textColor="#ffffff" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Don't have an account? Sign Up."
+        android:textColor="#ffffff"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/btn_FacebookLogin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txtRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/boundary_fb"
+        android:inputType="text"
+        android:text="Continue with Facebook"
+        android:textColor="#ffffff"
+        android:textStyle="normal" />
+</RelativeLayout>

@@ -10,7 +10,7 @@
         android:id="@+id/item_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/relativeLayout2"
         android:layout_alignParentStart="true" />
 
 
@@ -19,9 +19,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/item_list"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:padding="10dp"
-        tools:context="com.example.saad.toptaseapplication.Adapter_menuDetailed">
+        tools:context="com.example.saad.toptaseapplication.Adapter_menuDetailed"
+        android:id="@+id/relativeLayout2">
 
         <TextView
             android:id="@+id/totalAmount"
@@ -30,25 +32,25 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:text="Rs."
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textColor="#ff0000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/Sub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="31dp"
-            android:text="Total Amount"
-            android:textSize="20sp"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/totalAmount"></TextView>
+            android:layout_marginEnd="31dp"
+            android:layout_toStartOf="@+id/totalAmount"
+            android:text="Total Amount"
+            android:textSize="24sp"></TextView>
 
         <Button
             android:id="@+id/btnOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignStart="@+id/Sub"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/totalAmount"
             android:background="#ce232e"
             android:text="Place Order"

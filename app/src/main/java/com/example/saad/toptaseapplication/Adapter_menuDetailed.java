@@ -3,6 +3,7 @@ package com.example.saad.toptaseapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,6 +37,10 @@ public class Adapter_menuDetailed extends BaseAdapter implements View.OnClickLis
         /***********  Layout inflator to call external xml layout () ***********/
         inflater = ( LayoutInflater )activity.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+    }
+
+    public Adapter_menuDetailed() {
 
     }
 
@@ -80,7 +86,7 @@ public class Adapter_menuDetailed extends BaseAdapter implements View.OnClickLis
             holder = new ViewHolder();
             holder.text = (TextView) vi.findViewById(R.id.txtName);
             holder.text1=(TextView)vi.findViewById(R.id.txtPrice);
-            holder.image=(ImageView)vi.findViewById(R.id.txtQuantity);
+            holder.image=(ImageView)vi.findViewById(R.id.imageView);
 
             /************  Set holder with LayoutInflater ************/
             vi.setTag( holder );
@@ -101,13 +107,15 @@ public class Adapter_menuDetailed extends BaseAdapter implements View.OnClickLis
 
             /************  Set Model values in Holder elements ***********/
 
-            holder.text.setText( tempValues.getItemName() );
-            holder.text1.setText( tempValues.getPrice() );
-            holder.image.setImageResource(
-                    res.getIdentifier(
-                            "com.androidexample.customlistview:drawable/"+tempValues.getImage()
-                            ,null,null));
+            holder.text.setText( tempValues.getItemName());
+            holder.text1.setText( "Price: Rs." + tempValues.getPrice() );
+//            holder.image.setImageResource(
+//                    res.getIdentifier(
+//                            tempValues.getImage()
+//                            ,null,null));
+//            holder.image.setImageResource( vi.getContext().getResources().getIdentifier(tempValues.getImage(), null, vi.getContext().getPackageName()));
 
+            Log.e("ImageName",tempValues.getImage());
             /******** Set Item Click Listner for LayoutInflater for each row *******/
 
             vi.setOnClickListener(new OnItemClickListener( position ));

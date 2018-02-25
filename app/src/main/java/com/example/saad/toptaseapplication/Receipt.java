@@ -1,6 +1,7 @@
 package com.example.saad.toptaseapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +12,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Receipt extends AppCompatActivity {
@@ -30,33 +35,61 @@ public class Receipt extends AppCompatActivity {
     Button btnOrder;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference OrdersRef;
+    FirebaseAuth firebaseAuth;
+    TopTasteApplication cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
+
+        firebaseAuth= FirebaseAuth.getInstance();
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         ReceiptListView = this;
         Bundle b= getIntent().getExtras();
+        cart= (TopTasteApplication) getApplicationContext();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        OrdersRef = FirebaseDatabase.getInstance().getReference();
         OrdersRef = FirebaseDatabase.getInstance().getReference();
         OrdersRef=OrdersRef.child("Orders_HomeDelivery");
 
         totalAmount = (TextView) findViewById(R.id.totalAmount);
         btnOrder = (Button) findViewById(R.id.btnOrder);
+        btnOrder.setEnabled(true);
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HashMap<String,String> map = new HashMap<String, String>();
-                map.put("Items Ordered",CreateStringforItems(ItemsArray));
 
-                map.put("Location","Sample Location");
-                map.put("Name","John Doe");
-                map.put("Phone Number","03001234567");
+                if(currentUser!=null) {
+                    Date currentTime = Calendar.getInstance().getTime();
 
-                String key = OrdersRef.push().getKey();
-                OrdersRef.child(key).setValue(map);
+
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("ItemsOrdered", CreateStringforItems(ItemsArray));
+
+                    map.put("Location", "Sample Location");
+                    map.put("Name", "John Doe");
+                    map.put("Phone Number", "03001234567");
+                    map.put("Time", currentTime.toString());
+                    String key = OrdersRef.push().getKey();
+
+                    OrdersRef.child(key).setValue(map);
+
+                    cart.getItems().clear();
+                    cart.getPrices().clear();
+
+                    Toast.makeText(getApplicationContext(),"Order Placed",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(Receipt.this,NavigationDrawer.class);
+                    startActivity(i);
+                    btnOrder.setEnabled(false);
+                }
+                else {
+                    Bundle b= new Bundle();
+                    b.putString("From","Receipt");
+                    Intent i = new Intent(Receipt.this, Login.class);
+                    i.putExtras(b);
+                    startActivity(i);
+                }
 
             }
         });

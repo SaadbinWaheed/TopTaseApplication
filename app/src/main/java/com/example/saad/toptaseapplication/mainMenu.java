@@ -20,7 +20,7 @@ public class mainMenu extends AppCompatActivity {
     TopTasteApplication cart;
     GridView gridview;
 
-    public static String[] osNameList = {
+    private static String[] osNameList = {
             "French Fries",
             "Burgers",
             "Shawarmas",
@@ -28,19 +28,20 @@ public class mainMenu extends AppCompatActivity {
             "Roll Parathas",
             "Soups",
     };
-    public static int[] osImages = {
-            R.drawable.sample_fries,
-            R.drawable.sample_2,
-            R.drawable.sample_shawarma,
-            R.drawable.sample_shakes,
-            R.drawable.sample_rollparatha,
-            R.drawable.sample_soup,
+    private static int[] osImages = {
+            R.drawable.fries_new,
+            R.drawable.burgers_new,
+            R.drawable.shawarmas_new,
+            R.drawable.shakes_new,
+            R.drawable.rollparathas_new,
+            R.drawable.soups_new,
             };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
         gridview = (GridView) findViewById(R.id.customgrid);
         gridview.setAdapter(new Adapter_mainMenu(this, osNameList, osImages));
 

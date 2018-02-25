@@ -7,28 +7,33 @@
     tools:context="com.example.saad.toptaseapplication.Adapter_menuDetailed">
 
     <ImageView
-        android:id="@+id/txtQuantity"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/sample_2"
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/burgers_new" />
 
     <TextView
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:layout_marginStart="13dp"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/txtQuantity" />
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="Item Name"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtQuantity"
         android:layout_alignStart="@+id/txtName"
-        android:text="TextView" />
+        android:layout_below="@+id/txtName"
+        android:layout_marginTop="5dp"
+        android:text="Price"
+        android:textSize="14sp" />
 </RelativeLayout>

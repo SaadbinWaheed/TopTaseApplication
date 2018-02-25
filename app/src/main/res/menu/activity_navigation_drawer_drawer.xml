@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_book"
+        android:icon="@drawable/icon_table"
+        android:title="Book Table" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/icon_about"
+                android:title="About" />
+
+            <item
+                android:id="@+id/nav_RateUs"
+                android:icon="@drawable/icon_rate"
+                android:title="Rate Us" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/icon_logout"
+                android:title="Logout" />
+
+</menu>

@@ -8,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,8 @@ public class Adapter_receipt extends BaseAdapter implements View.OnClickListener
     Listview_receipt tempValues=null;
     int i=0;
     ArrayList<Integer> priceArray = new ArrayList<>();
+    ArrayList<Integer> quantityArray = new ArrayList<>();
+
     ArrayList<Integer> updatedPriceArray = new ArrayList<>();
 
     /*************  CustomAdapter Constructor *****************/
@@ -73,8 +73,7 @@ public class Adapter_receipt extends BaseAdapter implements View.OnClickListener
 
         View vi = convertView;
         final ViewHolder holder;
-
-        if(convertView==null){
+//        if(convertView==null){
 
             /****** Inflate tabitem.xml file for each row ( Defined below ) *******/
             vi = inflater.inflate(R.layout.activity_adapter_receipt, null);
@@ -82,15 +81,19 @@ public class Adapter_receipt extends BaseAdapter implements View.OnClickListener
             /****** View Holder Object to contain tabitem.xml file elements ******/
 
             holder = new ViewHolder();
-            holder.Quantity = (TextView) vi.findViewById(R.id.txtQuantity);
+            holder.Quantity = (TextView) vi.findViewById(R.id.imageView);
             holder.ItemName=(TextView)vi.findViewById(R.id.txtName);
             holder.ItemPrice=(TextView) vi.findViewById(R.id.txtPrice);
 
             holder.plus = (TextView) vi.findViewById(R.id.txtPlus);
             holder.minus=(TextView)vi.findViewById(R.id.txtMinus);
 
+        /***** Get each Model object from Arraylist ********/
+            tempValues = ( Listview_receipt ) data.get( position );
 
-            final View finalVi = vi;
+        Log.e("Data: ",((Listview_receipt) data.get(position)).getItemName().toString());
+
+        final View finalVi = vi;
             holder.plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -100,7 +103,7 @@ public class Adapter_receipt extends BaseAdapter implements View.OnClickListener
                     holder.Quantity.setText( String.valueOf( QuantVal + 1) );
 
                     QuantVal++;
-                    holder.ItemPrice.setText( "Rs." + String.valueOf( QuantVal * PriceVal ));
+                   // holder.ItemPrice.setText( "Rs." + String.valueOf( QuantVal * PriceVal ));
 
                     updatedPriceArray.set(position, (QuantVal * PriceVal) );
 
@@ -120,7 +123,7 @@ public class Adapter_receipt extends BaseAdapter implements View.OnClickListener
                         holder.Quantity.setText(String.valueOf(QuantVal - 1));
 
                         QuantVal--;
-                        holder.ItemPrice.setText("Rs." + String.valueOf(PriceVal * QuantVal));
+                       // holder.ItemPrice.setText("Rs." + String.valueOf(PriceVal * QuantVal));
 
                         updatedPriceArray.set(position, (PriceVal * QuantVal));
 
@@ -130,34 +133,26 @@ public class Adapter_receipt extends BaseAdapter implements View.OnClickListener
             });
             /************  Set holder with LayoutInflater ************/
             vi.setTag( holder );
-        }
-        else
-            holder=(ViewHolder)vi.getTag();
+//        }
+//        else
+//            holder=(ViewHolder)vi.getTag();
 
-        if(data.size()<=0)
-        {
-            holder.ItemName.setText("No Data");
 
-        }
-        else
-        {
-            /***** Get each Model object from Arraylist ********/
-            tempValues=null;
-            tempValues = ( Listview_receipt ) data.get( position );
 
             /************  Set Model values in Holder elements ***********/
-            holder.Quantity.setText( "1" );
+            holder.Quantity.setText(Integer.toString( tempValues.getQuantity()) );
             holder.ItemName.setText( tempValues.getItemName() );
             holder.ItemPrice.append(tempValues.getPrice());
 
             priceArray.add( Integer.parseInt(holder.ItemPrice.getText().toString().replace("Rs.",""))) ;
             updatedPriceArray.add( Integer.parseInt(holder.ItemPrice.getText().toString().replace("Rs.","")) ) ;
 
+
             updateTotal();
             /******** Set Item Click Listner for LayoutInflater for each row *******/
 
             vi.setOnClickListener(new OnItemClickListener( position ));
-        }
+
         return vi;
     }
 

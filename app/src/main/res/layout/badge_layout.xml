@@ -26,13 +26,12 @@
         android:layout_alignTop="@id/hotlist_bell"
         android:layout_marginRight="0dp"
         android:layout_marginTop="3dp"
-        android:background="@android:drawable/ic_notification_overlay"
         android:gravity="center"
         android:minWidth="17sp"
         android:paddingBottom="1dp"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        android:text="@null"
+        android:text="2"
         android:textColor="#ffffffff"
         android:textSize="12sp" />
 </RelativeLayout>

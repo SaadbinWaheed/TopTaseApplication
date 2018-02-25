@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:padding="3dp">
 
     <ImageView
         android:id="@+id/os_images"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="24dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/frenchfries" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:alpha="1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shakes_new"
+        android:text="Fries"
+        android:textAlignment="center"
+        android:tint="#60000000" />
 
     <TextView
         android:id="@+id/os_texts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/os_images"
         android:layout_alignEnd="@+id/os_images"
         android:layout_alignStart="@+id/os_images"
-        android:layout_below="@+id/os_images"
-        android:layout_marginTop="16dp"
+        android:layout_centerInParent="false"
+        android:layout_marginBottom="37dp"
         android:text="Item Name"
         android:textAlignment="center"
+        android:textColor="#ffffff"
         android:textSize="18dp"
         android:textStyle="bold" />
 

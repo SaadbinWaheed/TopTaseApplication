@@ -22,7 +22,7 @@ public class Adapter_mainMenu extends BaseAdapter {
     int [] imageId;
     private static LayoutInflater inflater=null;
 
-    public Adapter_mainMenu(mainMenu mainMenu, String[] osNameList, int[] osImages) {
+    public Adapter_mainMenu(Activity mainMenu, String[] osNameList, int[] osImages) {
         // TODO Auto-generated constructor stub
         result=osNameList;
         context=mainMenu;
