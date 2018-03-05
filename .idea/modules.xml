@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TopTaseApplication.iml" filepath="$PROJECT_DIR$/TopTaseApplication.iml" />
+      <module fileurl="file://G:\Android Projects\TopTaseApplication-master\TopTaseApplication.iml" filepath="G:\Android Projects\TopTaseApplication-master\TopTaseApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TopTaseApplication-master.iml" filepath="$PROJECT_DIR$/TopTaseApplication-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
