@@ -234,7 +234,7 @@ public class Login extends AppCompatActivity {
         finish();        }
         else
         {
-            Intent i = new Intent(Login.this,Receipt.class);
+            Intent i = new Intent(Login.this,PlaceOrder.class);
             startActivity(i);
             finish();
         }

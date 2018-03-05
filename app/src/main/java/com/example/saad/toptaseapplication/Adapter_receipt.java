@@ -1,33 +1,32 @@
 package com.example.saad.toptaseapplication;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.Resources;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.content.res.Resources;
+        import android.text.Editable;
+        import android.text.TextWatcher;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.BaseAdapter;
+        import android.widget.TextView;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
 
-public class Adapter_receipt extends BaseAdapter implements View.OnClickListener {
+public class Adapter_receipt extends BaseAdapter {
 
-    /*********** Declare Used Variables *********/
     private Activity activity;
     private ArrayList data;
-    private static LayoutInflater inflater=null;
     public Resources res;
-    Listview_receipt tempValues=null;
-    int i=0;
-    ArrayList<Integer> priceArray = new ArrayList<>();
-    ArrayList<Integer> quantityArray = new ArrayList<>();
+    private static LayoutInflater inflater=null;
 
-    ArrayList<Integer> updatedPriceArray = new ArrayList<>();
+    private Listview_receipt tempValues=null;
+    public static String[] arrItemsQuantity;
+    private String[] arrItemsPrice;
+    public static String[] arrItemsName;
 
-    /*************  CustomAdapter Constructor *****************/
     public Adapter_receipt(Activity a, ArrayList d,Resources resLocal) {
 
         /********** Take passed values **********/
@@ -39,163 +38,131 @@ public class Adapter_receipt extends BaseAdapter implements View.OnClickListener
         inflater = ( LayoutInflater )activity.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        arrItemsQuantity = new String[data.size()];
+        arrItemsPrice = new String[data.size()];
+        arrItemsName = new String[data.size()];
+
+        for(int iCount=0;iCount<data.size();iCount++){
+            Listview_receipt listview_receipt = (Listview_receipt) data.get(iCount);
+            arrItemsQuantity[iCount]=String.valueOf(listview_receipt.getQuantity());
+            arrItemsPrice[iCount]=listview_receipt.getPrice();
+            arrItemsName[iCount] = listview_receipt.getItemName();
+        }
+        updateTotal();
     }
 
-    /******** What is the size of Passed Arraylist Size ************/
+    @Override
     public int getCount() {
-
-        if(data.size()<=0)
-            return 1;
-        return data.size();
+        // TODO Auto-generated method stub
+        if(data != null && data.size() != 0){
+            return data.size();
+        }
+        return 0;
     }
 
+    @Override
     public Object getItem(int position) {
+        // TODO Auto-generated method stub
         return position;
     }
 
+    @Override
     public long getItemId(int position) {
+        // TODO Auto-generated method stub
         return position;
     }
 
-    /********* Create a holder Class to contain inflated xml file elements *********/
-    public static class ViewHolder{
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        //ViewHolder holder = null;
+        final ViewHolder holder;
+        if (convertView == null) {
 
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.activity_adapter_receipt, null);
+
+            holder.Quantity = (TextView) convertView.findViewById(R.id.imageView);
+            holder.ItemName=(TextView) convertView.findViewById(R.id.txtName);
+            holder.ItemPrice=(TextView) convertView.findViewById(R.id.txtPrice);
+            holder.plus = (TextView) convertView.findViewById(R.id.txtPlus);
+            holder.minus=(TextView) convertView.findViewById(R.id.txtMinus);
+
+            convertView.setTag(holder);
+
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.ref = position;
+
+        holder.Quantity.setText(arrItemsQuantity[position]);
+        holder.ItemName.setText(arrItemsName[position]);
+        holder.ItemPrice.setText(arrItemsPrice[position]);
+        holder.Quantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                arrItemsQuantity[holder.ref] = arg0.toString();
+            }
+        });
+
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newQuantity = Integer.parseInt(arrItemsQuantity[position])+1;
+                holder.Quantity.setText(String.valueOf(newQuantity));
+
+                updateTotal();
+            }
+        });
+        holder.minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newQuantity = Integer.parseInt(arrItemsQuantity[position])-1;
+                if (newQuantity>=0) {
+                    holder.Quantity.setText(String.valueOf(newQuantity));
+                    updateTotal();
+                }
+            }
+        });
+        return convertView;
+    }
+
+    private class ViewHolder {
         public TextView Quantity;
         public TextView ItemName;
         public TextView ItemPrice;
         public TextView plus;
         public TextView minus;
-
+        int ref;
     }
 
-    /****** Depends upon data size called for each row , Create each ListView row *****/
-    public View getView(final int position, final View convertView, ViewGroup parent) {
-
-        View vi = convertView;
-        final ViewHolder holder;
-//        if(convertView==null){
-
-            /****** Inflate tabitem.xml file for each row ( Defined below ) *******/
-            vi = inflater.inflate(R.layout.activity_adapter_receipt, null);
-
-            /****** View Holder Object to contain tabitem.xml file elements ******/
-
-            holder = new ViewHolder();
-            holder.Quantity = (TextView) vi.findViewById(R.id.imageView);
-            holder.ItemName=(TextView)vi.findViewById(R.id.txtName);
-            holder.ItemPrice=(TextView) vi.findViewById(R.id.txtPrice);
-
-            holder.plus = (TextView) vi.findViewById(R.id.txtPlus);
-            holder.minus=(TextView)vi.findViewById(R.id.txtMinus);
-
-        /***** Get each Model object from Arraylist ********/
-            tempValues = ( Listview_receipt ) data.get( position );
-
-        Log.e("Data: ",((Listview_receipt) data.get(position)).getItemName().toString());
-
-        final View finalVi = vi;
-            holder.plus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Integer QuantVal=Integer.parseInt(holder.Quantity.getText().toString()) ;
-                    Integer PriceVal=priceArray.get(position);
-
-                    holder.Quantity.setText( String.valueOf( QuantVal + 1) );
-
-                    QuantVal++;
-                   // holder.ItemPrice.setText( "Rs." + String.valueOf( QuantVal * PriceVal ));
-
-                    updatedPriceArray.set(position, (QuantVal * PriceVal) );
-
-
-                    updateTotal();
-                }
-            });
-
-            final View finalVi1 = vi;
-            holder.minus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Integer QuantVal=Integer.parseInt(holder.Quantity.getText().toString()) ;
-                    Integer PriceVal=priceArray.get(position);
-
-                    if(QuantVal!=0) {
-                        holder.Quantity.setText(String.valueOf(QuantVal - 1));
-
-                        QuantVal--;
-                       // holder.ItemPrice.setText("Rs." + String.valueOf(PriceVal * QuantVal));
-
-                        updatedPriceArray.set(position, (PriceVal * QuantVal));
-
-                        updateTotal();
-                    }
-                }
-            });
-            /************  Set holder with LayoutInflater ************/
-            vi.setTag( holder );
-//        }
-//        else
-//            holder=(ViewHolder)vi.getTag();
-
-
-
-            /************  Set Model values in Holder elements ***********/
-            holder.Quantity.setText(Integer.toString( tempValues.getQuantity()) );
-            holder.ItemName.setText( tempValues.getItemName() );
-            holder.ItemPrice.append(tempValues.getPrice());
-
-            priceArray.add( Integer.parseInt(holder.ItemPrice.getText().toString().replace("Rs.",""))) ;
-            updatedPriceArray.add( Integer.parseInt(holder.ItemPrice.getText().toString().replace("Rs.","")) ) ;
-
-
-            updateTotal();
-            /******** Set Item Click Listner for LayoutInflater for each row *******/
-
-            vi.setOnClickListener(new OnItemClickListener( position ));
-
-        return vi;
-    }
-
-    @Override
-    public void onClick(View v) {
-        Log.v("CustomAdapter", "=====Row button clicked=====");
-    }
-
-    /********* Called when Item click in ListView ************/
-    private class OnItemClickListener  implements View.OnClickListener {
-        private int mPosition;
-
-        OnItemClickListener(int position){
-            mPosition = position;
+    public int calculateTotal(){
+        int total=0;
+        for (int a=0;a<data.size();a++) {
+            total += Integer.parseInt(arrItemsPrice[a])*Integer.parseInt(arrItemsQuantity[a]);
         }
-
-        @Override
-        public void onClick(View arg0) {
-
-
-            Receipt sct = (Receipt) activity;
-            sct.onItemClick(mPosition);
-        }
+        return total;
     }
-
-    public Integer calculateTotal()
-    {
-        Integer sum=0;
-
-        Log.v("Price Array",updatedPriceArray.toString());
-
-
-        for(int i=0;i<updatedPriceArray.size();i++){
-            sum=sum+ (updatedPriceArray.get(i));
-        }
-
-      return sum;
-    }
-
     public void updateTotal()
     {
         Receipt sct = (Receipt) activity;
         sct.updateTotal(calculateTotal());
 
     }
+
 }
+

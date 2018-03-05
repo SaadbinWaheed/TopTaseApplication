@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.saad.toptaseapplication.PlaceOrder">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Option:"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000"/>
+        <View
+            android:layout_width="92dp"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:id="@+id/view"/>
+
+        <RadioGroup
+            android:id="@+id/radioCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/view">
+
+            <RadioButton
+                android:id="@+id/radioDelivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home Delivery"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioCollection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Take Away" />
+
+        </RadioGroup>
+        <EditText
+            android:layout_margin="5dp"
+            android:background="@drawable/edit_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="5"
+            android:gravity="start"
+            android:padding="10dp"
+            android:id="@+id/etDeliverAddress"
+            android:hint="Enter Address to Deliver ..."/>
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Done"
+        android:id="@+id/btnDone"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"/>
+</RelativeLayout>

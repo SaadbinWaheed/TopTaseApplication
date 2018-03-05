@@ -60,36 +60,8 @@ public class Receipt extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(currentUser!=null) {
-                    Date currentTime = Calendar.getInstance().getTime();
-
-
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("ItemsOrdered", CreateStringforItems(ItemsArray));
-
-                    map.put("Location", "Sample Location");
-                    map.put("Name", "John Doe");
-                    map.put("Phone Number", "03001234567");
-                    map.put("Time", currentTime.toString());
-                    String key = OrdersRef.push().getKey();
-
-                    OrdersRef.child(key).setValue(map);
-
-                    cart.getItems().clear();
-                    cart.getPrices().clear();
-
-                    Toast.makeText(getApplicationContext(),"Order Placed",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(Receipt.this,NavigationDrawer.class);
-                    startActivity(i);
-                    btnOrder.setEnabled(false);
-                }
-                else {
-                    Bundle b= new Bundle();
-                    b.putString("From","Receipt");
-                    Intent i = new Intent(Receipt.this, Login.class);
-                    i.putExtras(b);
-                    startActivity(i);
-                }
+                Intent i = new Intent(getApplicationContext(),PlaceOrder.class);
+                startActivity(i);
 
             }
         });
@@ -154,17 +126,7 @@ public class Receipt extends AppCompatActivity {
 
     }
 
-    private String CreateStringforItems(ArrayList Items)
-    {
-        String StringforItems="";
 
-        for ( int c=0;c<Items.size();c++)
-        {
-            StringforItems=StringforItems+ReceiptListViewValuesArr.get(c).getQuantity() + "x " +
-                    ReceiptListViewValuesArr.get(c).getItemName()+", ";
-        }
-        return StringforItems;
-    }
     public void updateTotal( int total)
     {
             totalAmount.setText( "Rs. " + String.valueOf(total));

@@ -41,7 +41,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".menuDetailed" />
-        <activity android:name=".Adapter_menuDetailed" />
         <activity android:name=".Receipt" />
 
         <meta-data
@@ -50,7 +49,7 @@
 
         <activity
             android:name=".Login"
-            android:label="Login"></activity>
+            android:label="Login" />
         <activity
             android:name=".Signup"
             android:label="Register" />
@@ -64,7 +63,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Table_Booking"></activity>
+        <activity android:name=".Table_Booking" />
+        <activity android:name=".PlaceOrder"></activity>
     </application>
 
 </manifest>
